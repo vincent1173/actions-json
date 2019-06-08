@@ -1,0 +1,6 @@
+{
+    "name": "json-variable-substitution",
+    "dependencies": {
+        "glob": "7.1.4"
+    }
+}

@@ -9,6 +9,8 @@ LABEL com.github.actions.color="blue"
 
 COPY . .
 
+RUN npm install
+
 RUN chmod +x /entrypoint.js
 
 ENTRYPOINT ["node", "/entrypoint.js"]
