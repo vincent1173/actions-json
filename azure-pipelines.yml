@@ -1,0 +1,24 @@
+
+stages:
+  - stage: build_stage
+    displayName: 'Build Stage'
+    jobs:
+    - job: 'build_job'
+      displayName: 'Build Job'
+      steps:
+        - script: echo "Hello From Build!"
+          displayName: 'Build task'
+  
+  - stage: deploy_stage
+    displayName: 'Deploy Stage'
+    dependsOn: build_stage
+    jobs:
+      - deployment: my_env_deployment
+        environment: 'vinca-environment'
+        displayName: 'Deploy Job'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: echo "Hello From Deploy!"
+                  displayName: "Deploy task"
