@@ -8,10 +8,32 @@ stages:
       steps:
         - script: echo "Hello From Build!"
           displayName: 'Build task'
+
+  - stage: test_stage
+    displayName: 'Test Stage'
+    dependsOn: build_stage
+    jobs:
+    - job: 'test_job'
+      displayName: 'Test Job'
+      steps:
+        - script: echo "Hello From Test!"
+          displayName: 'Test task'
   
+  - stage: package_stage
+    displayName: 'Package Stage'
+    dependsOn: build_stage
+    jobs:
+    - job: 'package_job'
+      displayName: 'Package Job'
+      steps:
+        - script: echo "Hello From Package!"
+          displayName: 'Package task'
+
   - stage: deploy_stage
     displayName: 'Deploy Stage'
-    dependsOn: build_stage
+    dependsOn:
+      - build_stage
+      - test_stage
     jobs:
       - deployment: my_env_deployment
         environment: 'vinca-environment'
