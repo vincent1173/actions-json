@@ -32,8 +32,8 @@ stages:
   - stage: deploy_stage
     displayName: 'Deploy Stage'
     dependsOn:
-      - build_stage
       - test_stage
+      - package_stage
     jobs:
       - deployment: my_env_deployment
         environment: 'vinca-environment'
