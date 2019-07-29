@@ -1,3 +1,6 @@
+variables:
+- name: skipComponentGovernanceDetection
+  value: true
 
 stages:
   - stage: build_stage
